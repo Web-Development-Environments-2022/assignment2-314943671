@@ -1,21 +1,78 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-	</head>
 
-	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+<head>
+  	<script src="//cdn.jsdelivr.net/npm/phaser@3.12/dist/phaser.js"></script>
+  	<script src="./services/jquery-3.4.1.slim.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script async type="text/javascript" src="./services/model_dialog.js"></script>
+	<script async type="text/javascript" src="./services/app.js"></script>
+</head>
+
+<body>
+	<h1>Pac-Man</h1>
+		<div class="tab_container">
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1"><i class="fa fa-code"></i><span>Welcome!</span></label>
+
+			<input id="tab2" type="radio" name="tabs">
+			<label for="tab2"><i class="fa fa-pencil-square-o"></i><span>Pacman ⍩⃝</span></label>
+
+			<input id="tab3" type="radio" name="tabs">
+			<label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Login</span></label>
+
+			<input id="tab4" type="radio" name="tabs">
+			<label for="tab4"><i class="fa fa-folder-open-o"></i><span>Register</span></label>
+
+			<input id="tab5" name="tabs">
+			<label for="tab5"><i class="fa fa-envelope-o"></i><span>About</span></label>
+
+			<section id="content1" class="tab-content">
+				<h3></h3>	      	
+			</section>
+
+			<section id="content2" class="tab-content">
+				<h3>Headline 2</h3>
+				<div class="container game-container">
+					<canvas id="mycanvas"></canvas>	
+				</div>
+		      	
+			</section>
+
+			<section id="content3" class="tab-content">
+				<h3>Headline 3</h3>
+		      	
+			</section>
+
+			<section id="content4" class="tab-content">
+				<h3>Headline 4</h3>
+		      	
+			</section>
+			
+
+			<!-- The Modal -->
+			<div id="myModal" class="modal">
+				
+				<!-- Modal content -->
+				<div class="modal-content">
+				<div class="modal-header">
+					<span class="close">&times;</span>
+					<h2>Modal Header</h2>
+				</div>
+				
+				<div class="modal-body">
+					<p>Some text in the Modal Body</p>
+					<p>Some other text...</p>
+				</div>
+				<div class="modal-footer">
+					<h3>Modal Footer</h3>
+				</div>
+				</div>
+			
+			</div>
+			
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
-	</body>
+  
+</body>
+
 </html>
