@@ -19,6 +19,173 @@ body {
 
 
 
+/*WORLD SETUP*/
+div.row {
+  height:30px;
+  
+}
+div.row div{
+  width: 30px;
+  height: 30px;
+/*    border: 1px solid black;*/
+  display: inline-block;
+  margin: 0px;
+  
+}
+
+/*BRICKS*/
+div.brick{
+  background-color: blue;
+}
+div.left{
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+div.right{
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+div.top{
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+}
+div.bottom{
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+div.lefttop{
+  border-top-left-radius: 100%;
+}
+div.leftbottom{
+  border-bottom-left-radius: 100%;
+}
+div.righttop{
+  border-top-right-radius: 100%;
+}
+div.rightbottom{
+  border-bottom-right-radius: 100%;
+}
+
+
+/*DYNAMIC CONTENT*/
+div.coin{
+  background-image: url(../images/coin.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 7.5px;
+}
+div.cherries{
+  background-image: url(../images/cherries.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;    
+}
+
+
+/*PACMAN*/
+div#pacman{
+  background-image: url(../images/pacman.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  position: absolute;   
+}
+/*GHOST*/
+div#ghost{
+  background-image: url(../images/ghost.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+div#ghost_2{
+  background-image: url(../images/ghost.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+div#ghost_3{
+  background-image: url(../images/ghost.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+div#ghost_4{
+  background-image: url(../images/ghost.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+/*SCORE*/
+div#score{
+  border: 1px solid rgb(0, 0, 0);
+  width: 40px;
+  height: 30px;
+  color: rgb(0, 0, 0);
+  padding: 7px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 700px;
+}
+
+/*PACMAN MOVEMENTS*/
+.down{
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Safari */
+  transform: rotate(-90deg);
+  
+}
+.up{
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  transform: rotate(90deg);
+}
+.right{
+
+}
+.left{
+  -ms-transform: rotate(-180deg); /* IE 9 */
+  -webkit-transform: rotate(-180deg); /* Safari */
+  transform: rotate(-180deg);
+}
+
+/*GAME OVER*/
+#gameover{
+  background-image: url(../images/gameover.jpg);
+  background-size: cover;
+  background-position: center;
+  border: 30px solid red;
+  width: 660px;
+  height: 450px;
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+
+.container {
+  background-color: black;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
@@ -92,12 +259,17 @@ label {
   border-bottom: 2px solid #f0f0f0;
 }
 
+
+
+/*
 .tab_container .tab-content p,
 .tab_container .tab-content h3 {
   -webkit-animation: fadeInScale 0.7s ease-in-out;
   -moz-animation: fadeInScale 0.7s ease-in-out;
   animation: fadeInScale 0.7s ease-in-out;
 }
+*/
+
 .tab_container .tab-content h3  {
   text-align: center;
 }
