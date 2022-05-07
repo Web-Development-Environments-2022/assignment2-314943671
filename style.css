@@ -10,7 +10,7 @@ body {
   color: #FFF;
   font-family: sans-serif;
   text-align: center;
-  line-height: 1.6;
+  
   font-size: 16px;
   overflow-x: hidden;
 }
@@ -78,13 +78,13 @@ div.rightbottom{
 
 /*DYNAMIC CONTENT*/
 div.coin{
-  background-image: url(../images/coin.gif);
+  background-image: url(images/coin.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 7.5px;
 }
 div.cherries{
-  background-image: url(../images/cherries.png);
+  background-image: url(images/cherries.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;    
@@ -93,7 +93,7 @@ div.cherries{
 
 /*PACMAN*/
 div#pacman{
-  background-image: url(../images/pacman.gif);
+  background-image: url(images/pacman.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -103,7 +103,7 @@ div#pacman{
 }
 /*GHOST*/
 div#ghost{
-  background-image: url(../images/ghost.gif);
+  background-image: url(images/ghost.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -112,7 +112,7 @@ div#ghost{
   position: absolute;
 }
 div#ghost_2{
-  background-image: url(../images/ghost.gif);
+  background-image: url(images/ghost.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -121,7 +121,7 @@ div#ghost_2{
   position: absolute;
 }
 div#ghost_3{
-  background-image: url(../images/ghost.gif);
+  background-image: url(images/ghost.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -130,7 +130,7 @@ div#ghost_3{
   position: absolute;
 }
 div#ghost_4{
-  background-image: url(../images/ghost.gif);
+  background-image: url(images/ghost.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -176,7 +176,7 @@ div#score{
 
 /*GAME OVER*/
 #gameover{
-  background-image: url(../images/gameover.jpg);
+  background-image: url(images/gameover.jpg);
   background-size: cover;
   background-position: center;
   border: 30px solid red;
@@ -193,7 +193,7 @@ div#score{
   background-color: black;
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 60%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
