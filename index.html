@@ -11,14 +11,13 @@
 	<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 </head>
 
-<body>
-	<h1>Pac-Man</h1>
+<body style="color: #004daa ">
 		<div class="tab_container">
 			<input id="tab1" type="radio" name="tabs" checked>
 			<label for="tab1"><i class="fa fa-code"></i><span>Welcome!</span></label>
 
 			<input id="tab2" type="radio" name="tabs">
-			<label for="tab2"><i class="fa fa-pencil-square-o"></i><span>Pacman ⍩⃝</span></label>
+			<label for="tab2"><i class="fa fa-pencil-square-o"></i><span>Pacman  </span><img src="/images/pacman.gif" alt="pac man" style="width:28px;height:48px; padding-top: 30px;"></label>
 
 			<input id="tab3" type="radio" name="tabs">
 			<label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Login</span></label>
@@ -50,9 +49,12 @@
 			</div>
 
 			<section id="content1" class="tab-content">
+				<img src="https://images.folloze.com/image/upload/v1614178695/fhti1qvznloh5b5ukyou.png" class="center">
 				<h3></h3>	
 				<p style="float: left;">Please login before play, if you have not registered before, click on the *Register* button:</p>	
 				<br>
+				<img src="https://static.wikia.nocookie.net/pacman/images/8/88/Pacster.png" alt="">
+
 				<br>
 				<br>
 				<div id="login_register">
@@ -68,6 +70,10 @@
 
 			<section id="content2" class="tab-content">
 				<h3>Headline 2</h3>
+				<audio controls autoplay loop>
+					<source src="/music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3" type="audio/mpeg">
+				  Your browser does not support the audio element.
+				  </audio> 
 				<div id="container" class="container">
 					<div id="world" class="block"></div>
 					<div id="pacman" class="block"></div>	
@@ -114,52 +120,80 @@
 			<section id="content3" class="tab-content">
 				<h3>Headline 3</h3>
 				<form action="/action_page.php" method="post">
-					<div class="imgcontainer">
-					  <img src="images/pacman_login_avatar.png" alt="Avatar" class="avatar">
-					</div>
-				  
 					<div class="container_login">
-					  <b>Username</b>
-					  <input type="text" placeholder="Enter Username" name="uname" required>
-				  
-					  <b>Password</b>
-					  <input type="password" placeholder="Enter Password" name="psw" required>
-		  
-					  <button type="submit">Login</button>
+						<main class="signup_login">
+							<h4 class="heading-primary">
+								Log in
+								<span class="custom-dot">:</span>
+							</h4>
+					<div class="signup-container">
+						<label class="inp">
+							<input type="text" class="input-text" placeholder="&nbsp;">
+									  <span class="label">Username</span>
+									  <span class="input-icon"><i class="fa-solid fa-address-card"></i></span>
+						</label>
+				  <label class="inp">
+					<input type="password" class="input-text" placeholder="&nbsp;" id="password">
+					<span class="label">Password</span>
+					<span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
+				  </label>
+					  <button class="btn btn-signup" type="submit">Login</button>
 					</div>
-				  </form>	
+				</form>	
+			</main>
+				<div class="welcome-container">
+					<div class="imgcontainer">
+						<img src="images/pacman_login_avatar.png" alt="Avatar" class="avatar">
+					</div>
+				</div>
+			</div>
 			</section>
 
 			<section id="content4" class="tab-content">
-				<h3>Take part in the Pac-Man community!</h3>
 				<form action="/action_page.php" method="post">
-					<div class="imgcontainer">
-					  <img src="images/ghost_register_avatar.jpg" alt="Avatar" class="avatar">
-					</div>
-				  
+					<h3>Take part in the Pac-Man community!</h3>
 					<div class="container_login">
-					  <b>Username</b>
-					  <input type="text" placeholder="Enter Username" name="uname" required>
-				  
-					  <b>Password</b>
-					  <input type="password" placeholder="Enter Password" name="psw" required>
-
-					  <b>Full Name</b>
-					  <input type="full_name" placeholder="Enter Full Name" name="name" required>
-
-					  <b>Email</b>
-					  <input type="email" placeholder="Enter Email" name="email" required>
-
-					  <b>Birth Date</b>
-					  <input type="birth_date" placeholder="Enter Birth Date" name="bdate" required>
-
-					  <button type="submit">Login</button>
-					</div>
+						<main class="signup-container">
+							<h4 class="heading-primary">Create new account<span class="custom-dot">.</span></h4>
+							<p class="text-mute">Already A Member? <a href="#tab3">Log in</a></p>
+							<form class="signup-form">
+							  <div class="f-row input-wrapper">
+								  <label class="inp">
+									  <input type="text" class="input-text" placeholder="&nbsp;">
+									  <span class="label">First name</span>
+									  <span class="input-icon"><i class="fa-solid fa-address-card"></i></span>
+									</label>
+									<label class="inp">
+										<input type="text" class="input-text" placeholder="&nbsp;">
+										<span class="label">Last name</span>
+										<span class="input-icon"><i class="fa-solid fa-address-card"></i></span>
+									</label>
+								</div>
+							  <label class="inp">
+								<input type="email" class="input-text" placeholder="&nbsp;">
+								<span class="label">Email</span>
+								<span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
+							  </label>
+							  <label class="inp">
+								  <input type="password" class="input-text" placeholder="&nbsp;" id="password">
+								  <span class="label">Password</span>
+								  <span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
+								</label>
+								<button class="btn btn-signup">Create account</button>
+							</form>
+						  </main>
+						  <div class="welcome-container">
+						  	<div class="imgcontainer">
+								  <img src="images/ghost_register_avatar.png" alt="Avatar" class="avatar">
+								</div>
+							</div>
+						</div>
 				  </form>	
 			</section>
-
-			<p class="no_wrap">This site is owned by Lidor Ashtamker and Chen Koley</p>	
 		</div>
+	<footer>
+		<p class="no_wrap">This site is owned by Lidor Ashtamker and Chen Kolely</p>	
+	</footer>
   
 </body>
 

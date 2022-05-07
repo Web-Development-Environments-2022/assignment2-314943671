@@ -43,6 +43,8 @@ var ghost_4 = {
   y: 1
 }
 
+var myMusic;
+
 const ghosts = [['ghost', ghost], ['ghost_2', ghost_2], ['ghost_3', ghost_3], ['ghost_4', ghost_4]]
 
 
@@ -109,7 +111,7 @@ function displayScore(){
 //PACMAN MOVEMENT
 document.onkeydown = function(e){
 //LEFT
-  if(e.keyCode == 37 && (world[pacman.y][pacman.x-1]==9 || world[pacman.y][pacman.x-1]==10 || world[pacman.y][pacman.x-1]==11)){
+  if(e.keyCode == 37 || e.keyCode == 65 && (world[pacman.y][pacman.x-1]==9 || world[pacman.y][pacman.x-1]==10 || world[pacman.y][pacman.x-1]==11)){
       $('#pacman').removeClass('right');
       $('#pacman').removeClass('up');
       $('#pacman').removeClass('down');
@@ -117,7 +119,7 @@ document.onkeydown = function(e){
       pacman.x --;
   }
 //RIGHT
-  else if(e.keyCode == 39 && (world[pacman.y][pacman.x+1]==9 || world[pacman.y][pacman.x+1]==10 || world[pacman.y][pacman.x+1]==11)){
+  else if(e.keyCode == 39 || e.keyCode == 68 && (world[pacman.y][pacman.x+1]==9 || world[pacman.y][pacman.x+1]==10 || world[pacman.y][pacman.x+1]==11)){
       $('#pacman').removeClass('left');
       $('#pacman').removeClass('up');
       $('#pacman').removeClass('down');
@@ -125,7 +127,7 @@ document.onkeydown = function(e){
       pacman.x ++;
   }
 //DOWN
-  else if(e.keyCode == 38 && (world[pacman.y-1][pacman.x]==9 || world[pacman.y-1][pacman.x]==10 || world[pacman.y-1][pacman.x]==11)){
+  else if(e.keyCode == 38 || e.keyCode == 87 && (world[pacman.y-1][pacman.x]==9 || world[pacman.y-1][pacman.x]==10 || world[pacman.y-1][pacman.x]==11)){
       $('#pacman').removeClass('right');
       $('#pacman').removeClass('up');
       $('#pacman').removeClass('left');
@@ -133,7 +135,7 @@ document.onkeydown = function(e){
       pacman.y --;
   }
 //UP
-  else if(e.keyCode == 40 && (world[pacman.y+1][pacman.x]==9 || world[pacman.y+1][pacman.x]==10 || world[pacman.y+1][pacman.x]==11)){
+  else if(e.keyCode == 40 || e.keyCode == 83 && (world[pacman.y+1][pacman.x]==9 || world[pacman.y+1][pacman.x]==10 || world[pacman.y+1][pacman.x]==11)){
       $('#pacman').removeClass('right');
       $('#pacman').removeClass('left');
       $('#pacman').removeClass('down');
@@ -231,4 +233,6 @@ $(document).ready(function(){
       displayGhost(element);
   });
   displayScore();
+  myMusic = "/music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3";
+  myMusic.play();
 })
