@@ -226,14 +226,41 @@ function checkend(ghost){
 }
 
 
-
 $(document).ready(function(){
+  localStorage.setItem('k', 'k');
+
+  
   displayWorld();
   displayPacman();
   ghosts.forEach(element => {
       displayGhost(element);
   });
   displayScore();
-  myMusic = "/music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3";
+  
+  myMusic = "music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3";
   myMusic.play();
 })
+
+
+
+function check() {
+
+    let user_input_username = document.getElementById("login_name").value;
+    let user_input_password = document.getElementById("login_password").value;
+
+		let localstorage_password = localStorage.getItem(user_input_username);
+
+		if(localstorage_password === null) {
+			alert('username not exist.');
+		}
+		else if(localstorage_password === user_input_password) {
+			alert('You are loged in.');
+		}
+    else {
+      alert('worng password.');
+
+    }
+
+}
+
+

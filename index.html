@@ -119,7 +119,7 @@
 
 			<section id="content3" class="tab-content">
 				<h3>Headline 3</h3>
-				<form action="/action_page.php" method="post">
+				<form id="form_login_id">
 					<div class="container_login">
 						<main class="signup_login">
 							<h4 class="heading-primary">
@@ -128,16 +128,16 @@
 							</h4>
 					<div class="signup-container">
 						<label class="inp">
-							<input type="text" class="input-text" placeholder="&nbsp;">
+							<input type="text" class="input-text" placeholder="&nbsp;" id="login_name">
 									  <span class="label">Username</span>
 									  <span class="input-icon"><i class="fa-solid fa-address-card"></i></span>
 						</label>
 				  <label class="inp">
-					<input type="password" class="input-text" placeholder="&nbsp;" id="password">
+					<input type="password" class="input-text" placeholder="&nbsp;" id="login_password">
 					<span class="label">Password</span>
 					<span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
 				  </label>
-					  <button class="btn btn-signup" type="submit">Login</button>
+					  <button class="btn btn-signup" type="submit" onclick="check()">Login</button>
 					</div>
 				</form>	
 			</main>
