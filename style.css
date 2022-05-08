@@ -480,7 +480,7 @@ input[type=text], input[type=password], input[type=full_name], input[type=email]
   margin: 24px 0 12px 0;
 }
 .welcome-imgcontainer {
-  display: inline-flex;
+  display: block;
   text-align: center;
   height: 300px;
   width: 300px;
@@ -601,14 +601,14 @@ input[type=text], input[type=password], input[type=full_name], input[type=email]
 }
 
 .welcome-container {
-  grid-column: 2 / 3;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 10rem;
-  padding-top: 10px;
+  grid-column: 2 / 2;
+grid-row: auto/1;
+display: inline-flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 10rem;
+padding-top: 10px;
 }
 .lg {
   font-size: 6rem;
