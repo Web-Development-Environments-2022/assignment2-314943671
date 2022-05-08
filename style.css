@@ -466,7 +466,7 @@ form {
   display: inline-block;
 }
 
-input[type=text], input[type=password], input[type=full_name], input[type=email], input[type=birth_date] {
+input[type=text], input[type=password], input[type=full_name], input[type=email], input[type=date] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -660,7 +660,6 @@ a {
 }
 .container_login {
   display: grid;
-  grid-template-rows: minmax(min-content, 100vh);
   grid-template-columns: repeat(2, 50vw);
 }
 b {
