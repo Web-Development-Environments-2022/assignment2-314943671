@@ -254,7 +254,7 @@ function check() {
 			alert('username not exist.');
 		}
 		else if(localstorage_password === user_input_password) {
-			alert('You are loged in.');
+			alert('You are logged in.');
 		}
     else {
       alert('worng password.');
@@ -263,4 +263,20 @@ function check() {
 
 }
 
+function register() {
+
+  let user_input_username = document.getElementById("username").value;
+  let user_input_password = document.getElementById("password").value;
+
+  let localstorage_password = localStorage.getItem(user_input_username);
+
+  if(localstorage_password !== null) {
+    alert('username already exist.');
+  }
+  else {
+    localStorage.setItem(user_input_username, user_input_password);
+    alert('You have registered successfully.');
+  }
+
+}
 
