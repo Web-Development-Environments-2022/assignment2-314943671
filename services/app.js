@@ -262,7 +262,9 @@ function check() {
     }
 
 }
-
+function stringContainsNumber(_string) {
+  return /\d/.test(_string);
+}
 function register() {
 
   let user_input_username = document.getElementById("username").value;
@@ -270,7 +272,12 @@ function register() {
 
   let localstorage_password = localStorage.getItem(user_input_username);
 
-  if(localstorage_password !== null) {
+  if (stringContainsNumber(user_input_username))
+  {
+    alert('username must contain letters only');
+  }
+
+  else if(localstorage_password !== null) {
     alert('username already exist.');
   }
   else {
