@@ -431,6 +431,7 @@ label .fa {
     justify-content: center;
   }
   
+  
   .button span {
     cursor: pointer;
     display: inline-block;
@@ -466,7 +467,7 @@ form {
   display: inline-block;
 }
 
-input[type=text], input[type=password], input[type=full_name], input[type=email], input[type=date] {
+input[type=text], input[type=password], input[type=full_name], input[type=email], input[type=date], input[type=number]{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

@@ -1,55 +1,23 @@
-//WORLD
-var world = [
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
-  [0, 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,0 ],
-  [0, 10,1, 0, 6, 9, 8, 0, 6, 10,5, 10,8, 0, 6, 9, 8, 0, 2, 10,0 ],
-  [0, 10,7, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,7, 10,0 ],
-  [0, 10,9, 11,8, 0, 0, 0, 6, 9 ,0, 10,8, 0, 0, 0, 6, 11,9, 10,0 ],
-  [0, 10,5, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,5, 10,0 ],
-  [0, 10,4, 0, 6, 9, 8, 0, 6, 10,0, 10,8, 0, 6, 9, 8, 0, 3, 10,0 ],
-  [0, 10,10,10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,10,10,0 ],
-  [0, 10,1, 0, 6, 9, 8, 0, 6, 10,0, 10,8, 0, 6, 9, 8, 0, 2, 10,0 ],
-  [0, 10,7, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,7, 10,0 ],
-  [0, 10,9, 11,8, 0, 0, 0, 6, 10,0, 10,8, 0, 0, 0, 6, 11,9, 10,0 ],
-  [0, 10,5, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,5, 10,0 ],
-  [0, 10,4, 0, 6, 9, 8, 0, 6, 10,7, 10,8, 0, 6, 9, 8, 0, 3, 10,0 ],
-  [0, 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,0 ],
-  [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 ]
-]
-
-//PACMAN
-var pacman = {
-  x: 9,
-  y: 4
-}
-
-var ghost = {
-  x: 19,
-  y: 13
-}
-
-var ghost_2 = {
-  x: 1,
-  y: 13
-}
-
-var ghost_3 = {
-  x: 19,
-  y: 1
-}
-
-var ghost_4 = {
-  x: 1,
-  y: 1
-}
-
+var world;
+var pacman;
+var ghost;
+var ghost_2;
+var ghost_3;
+var ghost_4;
 var myMusic;
-
-const ghosts = [['ghost', ghost], ['ghost_2', ghost_2], ['ghost_3', ghost_3], ['ghost_4', ghost_4]]
-
+var ghosts;
+var UP;
+var DOWN;
+var LEFT;
+var RIGHT;
+var game_time;
+var food_num;
+var user_online;
+var flag = 1;
 
 //SCORE
 var score = 0 ;
+resetGame();
 
 //DISPLAY WORLD
 function displayWorld(){
@@ -78,8 +46,8 @@ function displayWorld(){
               output += "<div class='brick left'></div>";
 //            DYNAMIC CONTENT
           else if(world[i][j] == 9)
-              output += "<div class='empty'></div>";    
-          else if(world[i][j] == 10)
+              output += "<div class='empty'></div>"; 
+          else if(world[i][j] == 10) 
               output += "<div class='coin'></div>";
           else if(world[i][j] == 11)
               output += "<div class='cherries'></div>";
@@ -100,18 +68,15 @@ function displayGhost(ghost){
   document.getElementById(ghost[0]).style.top = ghost[1].y*30+"px";
 }
 
-
-
 //DISPLAY SCORE
 function displayScore(){
   document.getElementById('score').innerHTML = score;
 }
 
-
 //PACMAN MOVEMENT
 document.onkeydown = function(e){
 //LEFT
-  if((e.keyCode == 37 || e.keyCode == 65) && (world[pacman.y][pacman.x-1]==9 || world[pacman.y][pacman.x-1]==10 || world[pacman.y][pacman.x-1]==11)){
+  if((e.keyCode == LEFT) && (world[pacman.y][pacman.x-1]==9 || world[pacman.y][pacman.x-1]==10 || world[pacman.y][pacman.x-1]==11)){
       $('#pacman').removeClass('right');
       $('#pacman').removeClass('up');
       $('#pacman').removeClass('down');
@@ -119,23 +84,23 @@ document.onkeydown = function(e){
       pacman.x --;
   }
 //RIGHT
-  else if((e.keyCode == 39 || e.keyCode == 68) && (world[pacman.y][pacman.x+1]==9 || world[pacman.y][pacman.x+1]==10 || world[pacman.y][pacman.x+1]==11)){
+  else if((e.keyCode == RIGHT) && (world[pacman.y][pacman.x+1]==9 || world[pacman.y][pacman.x+1]==10 || world[pacman.y][pacman.x+1]==11)){
       $('#pacman').removeClass('left');
       $('#pacman').removeClass('up');
       $('#pacman').removeClass('down');
       $('#pacman').addClass('right');
       pacman.x ++;
   }
-//DOWN
-  else if((e.keyCode == 38 || e.keyCode == 87) && (world[pacman.y-1][pacman.x]==9 || world[pacman.y-1][pacman.x]==10 || world[pacman.y-1][pacman.x]==11)){
+//UP
+  else if((e.keyCode == UP) && (world[pacman.y-1][pacman.x]==9 || world[pacman.y-1][pacman.x]==10 || world[pacman.y-1][pacman.x]==11)){
       $('#pacman').removeClass('right');
       $('#pacman').removeClass('up');
       $('#pacman').removeClass('left');
       $('#pacman').addClass('down');
       pacman.y --;
   }
-//UP
-  else if((e.keyCode == 40 || e.keyCode == 83) && (world[pacman.y+1][pacman.x]==9 || world[pacman.y+1][pacman.x]==10 || world[pacman.y+1][pacman.x]==11)){
+//DOWN
+  else if((e.keyCode == DOWN) && (world[pacman.y+1][pacman.x]==9 || world[pacman.y+1][pacman.x]==10 || world[pacman.y+1][pacman.x]==11)){
       $('#pacman').removeClass('right');
       $('#pacman').removeClass('left');
       $('#pacman').removeClass('down');
@@ -159,7 +124,6 @@ document.onkeydown = function(e){
   displayPacman()
   //checkend()
 }
-
 
 
 //GHOST MOVEMENT
@@ -205,18 +169,6 @@ function ghostMove(ghost){
   displayGhost(ghost);   
 }
 
-//GHOST REFRESH
-ghosts.forEach(element => {
-  setInterval(ghostMove, 500, element)
-});
-
-
-
-//CHECKEND
-ghosts.forEach(element => {
-  setInterval(checkend, 10, element)
-});
-
 
 //CHECK FOR GAME END
 function checkend(ghost){
@@ -229,7 +181,11 @@ function checkend(ghost){
 $(document).ready(function(){
   localStorage.setItem('k', 'k');
 
-  
+})
+
+
+function startGame() {
+  resetGame();
   displayWorld();
   displayPacman();
   ghosts.forEach(element => {
@@ -237,39 +193,54 @@ $(document).ready(function(){
   });
   displayScore();
   
-  myMusic = "music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3";
-  myMusic.play();
-})
+  //myMusic = "music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3";
+  //myMusic.play();
 
+  //GHOST REFRESH
+  if (flag == 1) { // need to fix this
+    flag = 0
+    ghosts.forEach(element => {
+      setInterval(ghostMove, 500, element)
+    });
+
+    //CHECKEND
+    ghosts.forEach(element => {
+      setInterval(checkend, 10, element)
+    });
+  }
+}
 
 
 function check() {
-
     let user_input_username = document.getElementById("login_name").value;
     let user_input_password = document.getElementById("login_password").value;
-
 		let localstorage_password = localStorage.getItem(user_input_username);
 
-		if(localstorage_password === null) {
+		if(localstorage_password == null) {
 			alert('username not exist.');
 		}
-		else if(localstorage_password === user_input_password) {
+		else if(localstorage_password == user_input_password) {
+      user_online = user_input_username
+
+      //document.getElementById('tab2').type = 'radio';
+      document.getElementById('play_button').style.verticalAlign = 'middle';
+      document.getElementById('play_button').style.display = 'block';
+      
 			alert('You are logged in.');
 		}
     else {
       alert('worng password.');
-
     }
 
 }
+
 function stringContainsNumber(_string) {
   return /\d/.test(_string);
 }
-function register() {
 
+function register() {
   let user_input_username = document.getElementById("username").value;
   let user_input_password = document.getElementById("password").value;
-
   let localstorage_password = localStorage.getItem(user_input_username);
 
   if (stringContainsNumber(user_input_username))
@@ -284,6 +255,147 @@ function register() {
     localStorage.setItem(user_input_username, user_input_password);
     alert('You have registered successfully.');
   }
-
 }
+
+
+function configuratons() { 
+  var modal = document.getElementById("myModal2");
+  modal.style.display = "block";
+}
+
+
+function setUp(event){
+  UP = event.keyCode;
+  document.getElementById('up').value = event.key;
+};
+
+function setDown(event){
+  DOWN = event.keyCode;
+  document.getElementById('down').value = event.key;
+};
+
+
+function setLeft(event){
+  LEFT = event.keyCode;
+  document.getElementById('left').value = event.key;
+};
+
+
+function setRight(event){
+  RIGHT = event.keyCode;
+  document.getElementById('right').value = event.key;
+};
+
+
+function checkConfigurations(){
+  let numFood = document.getElementById("food_num").value;
+  let numTime = document.getElementById("time").value;
+  let numGhosts = document.getElementById("num_of_ghosts").value;
+
+
+  if(numFood > 90 || numFood < 50 || numFood == null) {
+    alert("Number of food must be between 50-90"); 
+  }
+
+  else if(numTime < 60) {
+    alert("minimun game time is 60 seconds");
+  }
+
+  else if(numGhosts < 1 || numGhosts > 4) {
+    alert("Number of ghosts must be between 1-4");
+  }
+
+  else {
+    food_num = numFood
+    game_time = numTime
+    setGhosts(numGhosts);
+    var modal = document.getElementById("myModal2");
+    modal.style.display = "none";
+    startGame();
+  }
+
+};
+
+
+function setGhosts(num) {
+  if (num==1) {
+    ghosts = [['ghost', ghost]]
+  }
+
+  else if(num==2) {
+    ghosts = [['ghost', ghost], ['ghost_2', ghost_2]]
+  }
+
+  else if (num==3){
+    ghosts = [['ghost', ghost], ['ghost_2', ghost_2], ['ghost_3', ghost_3]]
+  }
+
+  else if(num==4) {
+    ghosts = [['ghost', ghost], ['ghost_2', ghost_2], ['ghost_3', ghost_3], ['ghost_4', ghost_4]]
+  }
+}
+
+
+
+
+function checkUser() {
+  if (user_online == null) {
+    alert("Please login before playing")
+  }
+  else {
+    document.getElementById('tab2').type = 'radio';
+    configuratons();
+  }
+}
+
+
+
+function resetGame() {
+  //WORLD
+  world = [
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+    [0, 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,0 ],
+    [0, 10,1, 0, 6, 9, 8, 0, 6, 10,5, 10,8, 0, 6, 9, 8, 0, 2, 10,0 ],
+    [0, 10,7, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,7, 10,0 ],
+    [0, 10,9, 11,8, 0, 0, 0, 6, 9 ,0, 10,8, 0, 0, 0, 6, 11,9, 10,0 ],
+    [0, 10,5, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,5, 10,0 ],
+    [0, 10,4, 0, 6, 9, 8, 0, 6, 10,0, 10,8, 0, 6, 9, 8, 0, 3, 10,0 ],
+    [0, 10,10,10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,10,10,0 ],
+    [0, 10,1, 0, 6, 9, 8, 0, 6, 10,0, 10,8, 0, 6, 9, 8, 0, 2, 10,0 ],
+    [0, 10,7, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,7, 10,0 ],
+    [0, 10,9, 11,8, 0, 0, 0, 6, 10,0, 10,8, 0, 0, 0, 6, 11,9, 10,0 ],
+    [0, 10,5, 10,10,10,10,10,10,10,0, 10,10,10,10,10,10,10,5, 10,0 ],
+    [0, 10,4, 0, 6, 9, 8, 0, 6, 10,7, 10,8, 0, 6, 9, 8, 0, 3, 10,0 ],
+    [0, 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,0 ],
+    [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 ]
+  ]
+
+  //PACMAN
+  pacman = {
+    x: 9,
+    y: 4
+  }
+
+  ghost = {
+    x: 19,
+    y: 13
+  }
+
+  ghost_2 = {
+    x: 1,
+    y: 13
+  }
+
+  ghost_3 = {
+    x: 19,
+    y: 1
+  }
+
+  ghost_4 = {
+    x: 1,
+    y: 1
+  }
+}
+
+
 

@@ -17,8 +17,8 @@
 			<input id="tab1" type="radio" name="tabs" checked>
 			<label for="tab1"><i class="fa fa-code"></i><span>Welcome!</span></label>
 
-			<input id="tab2" type="radio" name="tabs">
-			<label for="tab2"><i class="fa fa-pencil-square-o"></i><span>Pacman  </span><img src="/images/pacman.gif" alt="pac man" style="width:28px;height:48px; padding-top: 30px;"></label>
+			<input id="tab2" name="tabs">
+			<label for="tab2" onclick="checkUser()"><i class="fa fa-pencil-square-o"></i><span>Pacman  </span><img src="images/pacman.gif" alt="pac man" style="width:28px;height:48px; padding-top: 30px;"></label>
 
 			<input id="tab3" type="radio" name="tabs">
 			<label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Login</span></label>
@@ -49,6 +49,34 @@
 				</div>	
 			</div>
 
+
+			
+			<div id="myModal2" class="modal">
+				<div class="modal-content">		
+				<div class="modal-body">
+					<form id="form_configuration_id">
+						<div class="container_conf">
+							<h4 class="heading-primary" style="color: black;">Game Configuration:</h4>
+						
+							<div>
+								<input type="text" placeholder="key for up" id="up" class="input-text" autocomplete="off" onkeyup="setUp(event)" />
+								<input type="text" placeholder="key for down" id="down" class="input-text" autocomplete="off" onkeyup="setDown(event)" />
+								<input type="text" placeholder="key for left" id="left" class="input-text" autocomplete="off" onkeyup="setLeft(event)" />
+								<input type="text" placeholder="key for right" id="right" class="input-text" autocomplete="off" onkeyup="setRight(event)" />
+
+								<input type="number" min="50" max="90" class="input-text" placeholder="Number of food (use the arrows)" id="food_num">
+								<input type="number" min="60" class="input-text" placeholder="Game time (use the arrows)" id="time">
+								<input type="number" min="1" max="4" class="input-text" placeholder="Number Of Ghosts (use the arrows)" id="num_of_ghosts">
+		
+								<button class="btn btn-signup" type="button" onclick="checkConfigurations()">Start Game</button>
+							</div>
+						</div>
+					</form>	
+				</div>
+				
+				</div>	
+			</div>
+
 			<section id="content1" class="tab-content">
 				<img src="https://images.folloze.com/image/upload/v1614178695/fhti1qvznloh5b5ukyou.png" class="center">
 				<h3></h3>	
@@ -72,10 +100,10 @@
 			<section id="content2" class="tab-content">
 				<h3>Headline 2</h3>
 				<audio controls autoplay loop>
-					<source src="/music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3" type="audio/mpeg">
+					<source src="music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3" type="audio/mpeg">
 				  Your browser does not support the audio element.
 				  </audio> 
-				<div id="container" class="container">
+				<div id="container" class="container" tabindex="0">
 					<div id="world" class="block"></div>
 					<div id="pacman" class="block"></div>	
 					<div id="ghost" class="block"></div>
@@ -85,7 +113,7 @@
 					<div id="score" class="block"></div>  		
 					<div id="gameover" class="block"></div> 
 					
-				</div>
+				</div>		
 				<br>
 				<br>
 				<br>
@@ -120,11 +148,12 @@
 
 			<section id="content3" class="tab-content">
 				<h3>Headline 3</h3>
-				<form id="form_login_id">
+				<form id="form_login_id" autocomplete="off">
 					<div class="container_login">
 						<main class="signup_login">
 							<h4 class="heading-primary">
 								Log in
+			
 								<span class="custom-dot">:</span>
 							</h4>
 					<div class="signup-container">
@@ -138,7 +167,10 @@
 					<span class="label">Password</span>
 					<span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
 				  </label>
-					  <button class="btn btn-signup" type="submit" onclick="check()">Login</button>
+					  <button class="btn btn-signup" type="button" onclick="check()">Login</button>
+
+					  <input type="button" name="tabs">
+					  	<label for="tab2" id="play_button" style="display: none;" class="button" onclick="checkUser()" ><span>Play </span></label>
 					</div>
 				</form>	
 			</main>
