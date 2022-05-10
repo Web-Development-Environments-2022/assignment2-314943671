@@ -356,7 +356,8 @@ label .fa {
 /* Modal Content */
 .modal-content {
   position: relative;
-  background-color: #fefefe;
+  background-color: #04052a;
+  color: #FFF;
   margin: auto;
   padding: 0;
   border: 1px solid #888;
@@ -396,16 +397,16 @@ label .fa {
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #0ce;
-  color: white;
+  background-color: #04052a;
+  color: #FFF;
 }
 
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
   padding: 2px 16px;
-  background-color: #0ce;
-  color: white;
+  background-color: #04052a;
+  color: #FFF;
 }
 
 

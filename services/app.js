@@ -210,7 +210,10 @@ function startGame() {
   }
 }
 
-
+function Close(_string){
+  var modal = document.getElementById(_string);
+  modal.style.display = "none";
+}
 function check() {
     let user_input_username = document.getElementById("login_name").value;
     let user_input_password = document.getElementById("login_password").value;
@@ -226,7 +229,8 @@ function check() {
       document.getElementById('play_button').style.verticalAlign = 'middle';
       document.getElementById('play_button').style.display = 'block';
       
-			alert('You are logged in.');
+			var modal = document.getElementById("myModal3");
+      modal.style.display = "block";
 		}
     else {
       alert('worng password.');
@@ -344,6 +348,7 @@ function checkUser() {
   }
   else {
     document.getElementById('tab2').type = 'radio';
+    Close("myModal3");
     configuratons();
   }
 }

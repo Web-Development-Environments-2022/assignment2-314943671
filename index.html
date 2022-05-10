@@ -35,7 +35,7 @@
 				<!-- Modal content -->
 				<div class="modal-content">
 				<div class="modal-header">
-					<span class="close">&times;</span>
+					<span class="close" onclick="Close('myModal')">&times;</span>
 					<h2>About Us...</h2>
 				</div>
 				
@@ -56,7 +56,7 @@
 				<div class="modal-body">
 					<form id="form_configuration_id">
 						<div class="container_conf">
-							<h4 class="heading-primary" style="color: black;">Game Configuration:</h4>
+							<h4 class="heading-primary">Game Configuration:</h4>
 						
 							<div>
 								<input type="text" placeholder="key for up" id="up" class="input-text" autocomplete="off" onkeyup="setUp(event)" />
@@ -75,6 +75,20 @@
 				</div>
 				
 				</div>	
+			</div>
+			<div id="myModal3" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="close" onclick="Close('myModal3')">&times;</span>
+					</div>
+				<div class="modal-body">
+					<h4 class="heading-primary">
+						You have logged in successfully
+						<span class="custom-dot">!</span>
+						<label for="tab2" id="play_button" style="display: none;" class="button" onclick="checkUser()" ><span>Play </span></label>
+					</h4>
+				</div>
+				</div>
 			</div>
 
 			<section id="content1" class="tab-content">
@@ -153,9 +167,11 @@
 						<main class="signup_login">
 							<h4 class="heading-primary">
 								Log in
-			
 								<span class="custom-dot">:</span>
 							</h4>
+							<p class="text-mute">New here? 
+								<input id="login_refer">
+								<a><button for="tab4"><span>Create new account </span></button></a>
 					<div class="signup-container">
 						<label class="inp">
 							<input type="text" class="input-text" placeholder="&nbsp;" id="login_name">
@@ -168,9 +184,6 @@
 					<span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
 				  </label>
 					  <button class="btn btn-signup" type="button" onclick="check()">Login</button>
-
-					  <input type="button" name="tabs">
-					  	<label for="tab2" id="play_button" style="display: none;" class="button" onclick="checkUser()" ><span>Play </span></label>
 					</div>
 				</form>	
 			</main>
