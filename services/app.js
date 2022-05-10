@@ -245,9 +245,15 @@ function stringContainsNumber(_string) {
 function register() {
   let user_input_username = document.getElementById("FullName").value;
   let user_input_password = document.getElementById("password").value;
+  let user_input_email = document.getElementById("email").value;
+  let user_input_birthDate = document.getElementById("birthdate").value;
   let localstorage_password = localStorage.getItem(user_input_username);
 
-  if (stringContainsNumber(user_input_username))
+  if(user_input_password.length === 0 || user_input_username.length === 0 || user_input_birthDate.length === 0 || user_input_email.length === 0 )
+  {
+    alert('All fields must be filled');
+  }
+  else if (stringContainsNumber(user_input_username))
   {
     alert('Your name must contain letters only');
   }
