@@ -10,6 +10,31 @@
 	<script type="text/javascript" src="./services/app.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			$('#RegisterForm input[type="text"]').blur(function(){
+				if(!$(this).val()){
+					$(this).addClass("error");
+				} else{
+					$(this).removeClass("error");
+				}
+			});
+			$('#RegisterForm input[type="email"]').blur(function(){
+				if(!$(this).val()){
+					$(this).addClass("error");
+				} else{
+					$(this).removeClass("error");
+				}
+			});
+			$('#RegisterForm input[type="password"]').blur(function(){
+				if(!$(this).val()){
+					$(this).addClass("error");
+				} else{
+					$(this).removeClass("error");
+				}
+			});
+		});
+		</script>
 </head>
 
 <body style="color: #004daa ">
@@ -201,10 +226,10 @@
 							<p class="text-mute">Already A Member?
 								<label style="color: #2196f3;font-family: sans-serif;font-size: 16px;float: inline-end;width: 100%;" for="tab3"><span>Log in</span></label>
 							</p>
-							<form class="signup-form">
+							<form class="signup-form" id="RegisterForm">
 							  <div class="f-row input-wrapper">
 								  <label class="inp">
-									  <input type="text" class="input-text" placeholder="&nbsp;">
+									  <input type="text" class="input-text" placeholder="&nbsp;" id="FullName">
 									  <span class="label">Full name</span>
 									  <span class="input-icon"><i class="fa-solid fa-address-card"></i></span>
 									</label>

@@ -243,13 +243,13 @@ function stringContainsNumber(_string) {
 }
 
 function register() {
-  let user_input_username = document.getElementById("username").value;
+  let user_input_username = document.getElementById("FullName").value;
   let user_input_password = document.getElementById("password").value;
   let localstorage_password = localStorage.getItem(user_input_username);
 
   if (stringContainsNumber(user_input_username))
   {
-    alert('username must contain letters only');
+    alert('Your name must contain letters only');
   }
 
   else if(localstorage_password !== null) {
