@@ -190,12 +190,22 @@ div#score{
 
 
 .container {
+  display: inline-block;
   background-color: black;
   position: absolute;
   left: 50%;
-  top: 60%;
+  top: 47%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+#side_settings {
+  display: inline-block;
+  background-color: black;
+  position: absolute;
+  left: 10%;
+  top: 35%;
+  border: 1px solid #888;
 }
 
 

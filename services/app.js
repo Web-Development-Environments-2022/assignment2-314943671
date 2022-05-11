@@ -10,14 +10,27 @@ var UP;
 var DOWN;
 var LEFT;
 var RIGHT;
+var UP_name;
+var DOWN_name;
+var LEFT_name;
+var RIGHT_name;
 var game_time;
 var food_num;
 var user_online;
+var ghosts_number;
 var flag = 1;
+var game_begin = false;
+var lives = 5;
+var coins_locs = [];
+var pacman_locs = [];
+var ghosts_interval = [];
+var checkend_interval = [];
+var time_interval;
 
 //SCORE
 var score = 0 ;
 resetGame();
+
 
 //DISPLAY WORLD
 function displayWorld(){
@@ -62,6 +75,7 @@ function displayPacman(){
   document.getElementById('pacman').style.left = pacman.x*30+"px";
   document.getElementById('pacman').style.top = pacman.y*30+"px";
 }
+
 //DISPLAY GHOST
 function displayGhost(ghost){
   document.getElementById(ghost[0]).style.left = ghost[1].x*30+"px";
@@ -75,54 +89,56 @@ function displayScore(){
 
 //PACMAN MOVEMENT
 document.onkeydown = function(e){
-//LEFT
-  if((e.keyCode == LEFT) && (world[pacman.y][pacman.x-1]==9 || world[pacman.y][pacman.x-1]==10 || world[pacman.y][pacman.x-1]==11)){
-      $('#pacman').removeClass('right');
-      $('#pacman').removeClass('up');
-      $('#pacman').removeClass('down');
-      $('#pacman').addClass('left');
-      pacman.x --;
-  }
-//RIGHT
-  else if((e.keyCode == RIGHT) && (world[pacman.y][pacman.x+1]==9 || world[pacman.y][pacman.x+1]==10 || world[pacman.y][pacman.x+1]==11)){
-      $('#pacman').removeClass('left');
-      $('#pacman').removeClass('up');
-      $('#pacman').removeClass('down');
-      $('#pacman').addClass('right');
-      pacman.x ++;
-  }
-//UP
-  else if((e.keyCode == UP) && (world[pacman.y-1][pacman.x]==9 || world[pacman.y-1][pacman.x]==10 || world[pacman.y-1][pacman.x]==11)){
-      $('#pacman').removeClass('right');
-      $('#pacman').removeClass('up');
-      $('#pacman').removeClass('left');
-      $('#pacman').addClass('down');
-      pacman.y --;
-  }
-//DOWN
-  else if((e.keyCode == DOWN) && (world[pacman.y+1][pacman.x]==9 || world[pacman.y+1][pacman.x]==10 || world[pacman.y+1][pacman.x]==11)){
-      $('#pacman').removeClass('right');
-      $('#pacman').removeClass('left');
-      $('#pacman').removeClass('down');
-      $('#pacman').addClass('up');
-      pacman.y ++;
-  }    
-//PACMAN SCORING COINS
-  if(world[pacman.y][pacman.x] == 10){
-      world[pacman.y][pacman.x] = 9;
-      score+=10;
-      displayWorld();
-      displayScore();
-  }
-//PACMAN SCORING CHERRIES
-  if(world[pacman.y][pacman.x] == 11){
-      world[pacman.y][pacman.x] = 9;
-      score+=50;
-      displayWorld();
-      displayScore();
-  }
-  displayPacman()
-  //checkend()
+  if(game_begin) {
+  //LEFT
+    if((e.keyCode == LEFT) && (world[pacman.y][pacman.x-1]==9 || world[pacman.y][pacman.x-1]==10 || world[pacman.y][pacman.x-1]==11)){
+        $('#pacman').removeClass('right');
+        $('#pacman').removeClass('up');
+        $('#pacman').removeClass('down');
+        $('#pacman').addClass('left');
+        pacman.x --;
+    }
+  //RIGHT
+    else if((e.keyCode == RIGHT) && (world[pacman.y][pacman.x+1]==9 || world[pacman.y][pacman.x+1]==10 || world[pacman.y][pacman.x+1]==11)){
+        $('#pacman').removeClass('left');
+        $('#pacman').removeClass('up');
+        $('#pacman').removeClass('down');
+        $('#pacman').addClass('right');
+        pacman.x ++;
+    }
+  //UP
+    else if((e.keyCode == UP) && (world[pacman.y-1][pacman.x]==9 || world[pacman.y-1][pacman.x]==10 || world[pacman.y-1][pacman.x]==11)){
+        $('#pacman').removeClass('right');
+        $('#pacman').removeClass('up');
+        $('#pacman').removeClass('left');
+        $('#pacman').addClass('down');
+        pacman.y --;
+    }
+  //DOWN
+    else if((e.keyCode == DOWN) && (world[pacman.y+1][pacman.x]==9 || world[pacman.y+1][pacman.x]==10 || world[pacman.y+1][pacman.x]==11)){
+        $('#pacman').removeClass('right');
+        $('#pacman').removeClass('left');
+        $('#pacman').removeClass('down');
+        $('#pacman').addClass('up');
+        pacman.y ++;
+    }    
+  //PACMAN SCORING COINS
+    if(world[pacman.y][pacman.x] == 10){
+        world[pacman.y][pacman.x] = 9;
+        score+=5;
+        displayWorld();
+        displayScore();
+    }
+  //PACMAN SCORING CHERRIES
+    if(world[pacman.y][pacman.x] == 11){
+        world[pacman.y][pacman.x] = 9;
+        score+=20;
+        displayWorld();
+        displayScore();
+    }
+    displayPacman()
+    //checkend()
+  } 
 }
 
 
@@ -172,19 +188,32 @@ function ghostMove(ghost){
 
 //CHECK FOR GAME END
 function checkend(ghost){
-  if((pacman.x == ghost[1].x) && (pacman.y == ghost[1].y)){
-      $('#gameover').fadeIn();
+  if((pacman.x == ghost[1].x) && (pacman.y == ghost[1].y) && lives == 1){
+      clearIntervals();
+      alert("Loser!");
+      configuratons(); 
+  }
+
+  else if ((pacman.x == ghost[1].x) && (pacman.y == ghost[1].y) && lives > 0) {
+    clearIntervals();
+    lives--;
+    document.getElementById("lives").innerHTML = "Lives Left: " + lives
+    score = score - 10;
+    displayScore();
+    resetGameWithoutWorld();
   }
 }
 
 
 $(document).ready(function(){
   localStorage.setItem('k', 'k');
-
 })
 
 
 function startGame() {
+  clearInterval(time_interval);
+  game_begin = true;
+  lives = 5;
   resetGame();
   displayWorld();
   displayPacman();
@@ -197,23 +226,28 @@ function startGame() {
   //myMusic.play();
 
   //GHOST REFRESH
-  if (flag == 1) { // need to fix this
-    flag = 0
-    ghosts.forEach(element => {
-      setInterval(ghostMove, 500, element)
-    });
+  setIntervals();
 
-    //CHECKEND
-    ghosts.forEach(element => {
-      setInterval(checkend, 10, element)
-    });
-  }
+  document.getElementById("lives").innerHTML = "Lives Left: " + lives
+  document.getElementById("user_online").innerHTML = "Current User: " + user_online
+  document.getElementById("controls_up").innerHTML = "Up: " + UP_name;
+  document.getElementById("controls_down").innerHTML ="Down: " + DOWN_name;
+  document.getElementById("controls_left").innerHTML = "Left: " + LEFT_name;
+  document.getElementById("controls_right").innerHTML ="Right: " + RIGHT_name;
+  document.getElementById("food_side_settings").innerHTML = "Number Of Food: " + food_num
+  document.getElementById("ghosts_side_settings").innerHTML = "Number Of Ghosts: " + ghosts_number
+  document.getElementById("time_side_settings").innerHTML = "Game Time: " + game_time 
+
+  time_interval = setInterval(timeInterval, 1000)
 }
+
 
 function Close(_string){
   var modal = document.getElementById(_string);
   modal.style.display = "none";
 }
+
+
 function check() {
     let user_input_username = document.getElementById("login_name").value;
     let user_input_password = document.getElementById("login_password").value;
@@ -234,7 +268,6 @@ function check() {
     else {
       alert('worng password.');
     }
-
 }
 
 function stringContainsNumber(_string) {
@@ -242,7 +275,7 @@ function stringContainsNumber(_string) {
 }
 
 function register() {
-  let user_input_username = document.getElementById("FullName").value;
+  let user_input_username = document.getElementById("username").value;
   let user_input_password = document.getElementById("password").value;
   let user_input_email = document.getElementById("email").value;
   let user_input_birthDate = document.getElementById("birthdate").value;
@@ -267,11 +300,13 @@ function register() {
   else {
     localStorage.setItem(user_input_username, user_input_password);
     alert('You have registered successfully.');
+    window.location.reload();
   }
 }
 
 
 function configuratons() { 
+  game_begin = false;
   var modal = document.getElementById("myModal2");
   modal.style.display = "block";
 }
@@ -280,23 +315,27 @@ function configuratons() {
 function setUp(event){
   UP = event.keyCode;
   document.getElementById('up').value = event.key;
+  UP_name = event.key;
 };
 
 function setDown(event){
   DOWN = event.keyCode;
   document.getElementById('down').value = event.key;
+  DOWN_name = event.key;
 };
 
 
 function setLeft(event){
   LEFT = event.keyCode;
   document.getElementById('left').value = event.key;
+  LEFT_name = event.key;
 };
 
 
 function setRight(event){
   RIGHT = event.keyCode;
   document.getElementById('right').value = event.key;
+  RIGHT_name = event.key;
 };
 
 
@@ -321,12 +360,12 @@ function checkConfigurations(){
   else {
     food_num = numFood
     game_time = numTime
+    ghosts_number = numGhosts
     setGhosts(numGhosts);
     var modal = document.getElementById("myModal2");
     modal.style.display = "none";
     startGame();
   }
-
 };
 
 
@@ -349,8 +388,6 @@ function setGhosts(num) {
 }
 
 
-
-
 function checkUser() {
   if (user_online == null) {
     alert("Please login before playing")
@@ -363,8 +400,10 @@ function checkUser() {
 }
 
 
-
 function resetGame() {
+  clearIntervals();
+  clearInterval(time_interval);
+
   //WORLD
   world = [
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
@@ -384,10 +423,50 @@ function resetGame() {
     [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 ]
   ]
 
-  //PACMAN
-  pacman = {
-    x: 9,
-    y: 4
+  for(var i=0; i<world.length; i++){
+    for(var j=0; j<world[i].length; j++){
+      if(world[i][j] == 10) {
+        coins_locs.push([i,j]);
+      }
+    }
+  }
+
+  for(var i=0; i<food_num; i++){
+    let index = Math.floor(Math.random()*coins_locs.length);
+    var item = coins_locs[index];
+    world[item[0]][item[1]] = 12;
+    coins_locs.splice(index,1);
+  }
+
+  for(var i=0; i<world.length; i++){
+    for(var j=0; j<world[i].length; j++){
+      if(world[i][j] == 10) {
+        world[i][j] = 9;
+      }
+
+      else if(world[i][j] == 12) {
+        world[i][j] = 10;
+      }
+    }
+  }
+
+  score = 0
+
+  for(var i=0; i<world.length; i++){
+    for(var j=0; j<world[i].length; j++){
+      if (world[i][j] == 9) {
+        pacman_locs.push([i,j]);
+      }
+    }
+  }
+
+  let index = Math.floor(Math.random()*pacman_locs.length);
+  var item = pacman_locs[index];
+
+   //PACMAN
+   pacman = {
+    x: item[1],
+    y: item[0]
   }
 
   ghost = {
@@ -409,7 +488,102 @@ function resetGame() {
     x: 1,
     y: 1
   }
+
+  setGhosts(ghosts_number);
 }
+
+
+function resetGameWithoutWorld(){
+  clearIntervals();
+
+  let index = Math.floor(Math.random()*pacman_locs.length);
+  var item = pacman_locs[index];
+
+   pacman = {
+    x: item[1],
+    y: item[0]
+  }
+
+  ghost = {
+    x: 19,
+    y: 13
+  }
+
+  ghost_2 = {
+    x: 1,
+    y: 13
+  }
+
+  ghost_3 = {
+    x: 19,
+    y: 1
+  }
+
+  ghost_4 = {
+    x: 1,
+    y: 1
+  }
+  setGhosts(ghosts_number);
+  displayPacman();
+  ghosts.forEach(element => {
+      displayGhost(element);
+  });
+
+  setIntervals();
+}
+
+
+function clearIntervals (){
+  for(var i=0; i<checkend_interval.length; i++){
+    clearInterval(checkend_interval[i]);
+  }
+  checkend_interval = [];
+
+  for(var i=0; i<ghosts_interval.length; i++){
+    clearInterval(ghosts_interval[i]);
+    
+  }
+  ghosts_interval = [];
+}
+
+
+function setIntervals() {
+  ghosts.forEach(element => {
+    ghosts_interval.push(setInterval(ghostMove, 500, element))
+  });
+
+  //CHECKEND
+  ghosts.forEach(element => {
+    checkend_interval.push(setInterval(checkend, 10, element))
+  });
+}
+
+
+
+function timeInterval() {
+  if(game_time == 0) {
+    if(score < 100){
+      clearInterval(time_interval);
+      alert("You are better than " + score + " points!");
+      configuratons();
+    } 
+    else {
+      clearInterval(time_interval);
+      alert("Winner!");
+      configuratons();
+    }
+  }
+  else {
+    game_time--;
+    document.getElementById("time_side_settings").innerHTML = "Game Time: " + game_time; 
+  }
+}
+
+
+
+
+
+
 
 
 

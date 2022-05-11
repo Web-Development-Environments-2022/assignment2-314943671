@@ -110,7 +110,7 @@
 			</section>
 
 			<section id="content2" class="tab-content">
-				<h3>Headline 2</h3>
+				<h3 id="user_online"></h3>
 				<audio controls autoplay loop>
 					<source src="music/OnlyMP3.to - Pacman Dubstep Remix-v2a5yMUmcp0-192k-1644089325462.mp3" type="audio/mpeg">
 				  Your browser does not support the audio element.
@@ -154,8 +154,17 @@
 				<br>
 				<br>
 				<br>
-				<br>
-				<br>
+				<p>To start new game press the Pacman tab above</p>
+				<div id="side_settings" style="display: subgrid;">
+					<p id="lives"></p>
+					<p id="controls_up"></p>
+					<p id="controls_down"></p>
+					<p id="controls_left"></p>
+					<p id="controls_right"></p>	
+					<p id="food_side_settings"></p>
+					<p id="ghosts_side_settings"></p>
+					<p id="time_side_settings"></p>		
+				</div>
 			</section>
 
 			<section id="content3" class="tab-content">
@@ -194,7 +203,7 @@
 			</section>
 
 			<section id="content4" class="tab-content">
-				<form action="/action_page.php">
+				<form>
 					<h3>Take part in the Pac-Man community!</h3>
 					<div class="container_login">
 						<main class="signup-container">
@@ -230,7 +239,7 @@
 									<span class="label">Birthdate</span>
 									<span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
 								  </label>
-								<button class="btn btn-signup" onclick="register()">Create account</button>
+								<button class="btn btn-signup" type="button" onclick="register()">Create account</button>
 							</form>
 						  </main>
 						  <div class="welcome-container">
