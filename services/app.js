@@ -227,7 +227,6 @@ function check() {
 
       //document.getElementById('tab2').type = 'radio';
       document.getElementById('play_button').style.verticalAlign = 'middle';
-      document.getElementById('play_button').style.display = 'block';
       
 			var modal = document.getElementById("myModal3");
       modal.style.display = "block";
