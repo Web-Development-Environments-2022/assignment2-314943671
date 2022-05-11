@@ -253,6 +253,10 @@ function register() {
   {
     alert('All fields must be filled');
   }
+  else if(user_input_password.length < 6)
+  {
+    alert('password must contain at least 6 characters');
+  }
   else if (stringContainsNumber(user_input_username))
   {
     alert('Your name must contain letters only');
