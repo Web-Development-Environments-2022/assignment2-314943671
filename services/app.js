@@ -126,6 +126,7 @@ document.onkeydown = function(e){
     if(world[pacman.y][pacman.x] == 10){
         world[pacman.y][pacman.x] = 9;
         score+=5;
+        coin_counter--;
         displayWorld();
         displayScore();
     }
@@ -359,6 +360,7 @@ function checkConfigurations(){
 
   else {
     food_num = numFood
+    coin_counter = food_num;
     game_time = numTime
     ghosts_number = numGhosts
     setGhosts(numGhosts);
@@ -561,7 +563,7 @@ function setIntervals() {
 
 
 function timeInterval() {
-  if(game_time == 0) {
+  if(game_time == 0 || coin_counter == 0) {
     if(score < 100){
       clearInterval(time_interval);
       alert("You are better than " + score + " points!");
