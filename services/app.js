@@ -203,6 +203,11 @@ function checkend(ghost){
     displayScore();
     resetGameWithoutWorld();
   }
+  if(coin_counter == 0)
+  {
+    var modal = document.getElementById("myModal4");
+    modal.style.display = "block";
+  }
 }
 
 
