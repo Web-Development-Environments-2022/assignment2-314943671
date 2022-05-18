@@ -6,14 +6,14 @@ var ghost_3;
 var ghost_4;
 var myMusic;
 var ghosts;
-var UP;
-var DOWN;
-var LEFT;
-var RIGHT;
-var UP_name;
-var DOWN_name;
-var LEFT_name;
-var RIGHT_name;
+var UP = 87;
+var DOWN = 83;
+var LEFT = 65;
+var RIGHT = 68;
+var UP_name = 'w';
+var DOWN_name = 's';
+var LEFT_name = 'a';
+var RIGHT_name = 'd';
 var game_time;
 var food_num;
 var user_online;
@@ -323,7 +323,7 @@ function setDown(event){
   DOWN = event.keyCode;
   document.getElementById('down').value = event.key;
   DOWN_name = event.key;
-};
+ };
 
 
 function setLeft(event){
@@ -368,6 +368,18 @@ function checkConfigurations(){
     modal.style.display = "none";
     startGame();
   }
+};
+function Random()
+{
+    let numGhosts = Math.floor(Math.random() * (4 - 1) ) + 1;
+    food_num = Math.floor(Math.random() * (90 - 50) ) + 50
+    coin_counter = food_num;
+    game_time = Math.floor(Math.random() * (300 - 60) ) + 60;
+    ghosts_number = numGhosts
+    setGhosts(numGhosts);
+    var modal = document.getElementById("myModal2");
+    modal.style.display = "none";
+    startGame();
 };
 
 
