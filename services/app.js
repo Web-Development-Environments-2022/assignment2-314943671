@@ -191,7 +191,7 @@ function ghostMove(ghost){
 function checkend(ghost){
   if((pacman.x == ghost[1].x) && (pacman.y == ghost[1].y) && lives == 1){
       clearIntervals();
-      var modal = document.getElementById("myModal4");
+      var modal = document.getElementById("myModal5");
       modal.style.display = "block"; 
   }
 
