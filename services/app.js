@@ -560,6 +560,7 @@ function clearIntervals (){
     
   }
   ghosts_interval = [];
+  clearInterval(time_interval);
 }
 
 
