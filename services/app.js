@@ -409,6 +409,7 @@ function checkUser() {
   else {
     document.getElementById('tab2').type = 'radio';
     Close("myModal3");
+    Close("myModal4");
     configuratons();
   }
 }
@@ -583,8 +584,8 @@ function timeInterval() {
     } 
     else {
       clearInterval(time_interval);
-      alert("Winner!");
-      configuratons();
+      var modal = document.getElementById("myModal4");
+      modal.style.display = "block";
     }
   }
   else {
