@@ -556,7 +556,7 @@ input[type=text], input[type=password], input[type=full_name], input[type=email]
   font-size: inherit;
 }
 .btn-signup {
-  align-self: flex-end;
+  align-self: flex-start;
   margin-top: 2rem;
   box-shadow: 0 1rem 2rem #00000025;
 }
