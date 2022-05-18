@@ -10,6 +10,31 @@
 	<script type="text/javascript" src="./services/app.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			$('#RegisterForm input[type="text"]').blur(function(){
+				if(!$(this).val()){
+					$(this).addClass("error");
+				} else{
+					$(this).removeClass("error");
+				}
+			});
+			$('#RegisterForm input[type="email"]').blur(function(){
+				if(!$(this).val()){
+					$(this).addClass("error");
+				} else{
+					$(this).removeClass("error");
+				}
+			});
+			$('#RegisterForm input[type="password"]').blur(function(){
+				if(!$(this).val()){
+					$(this).addClass("error");
+				} else{
+					$(this).removeClass("error");
+				}
+			});
+		});
+		</script>
 </head>
 
 <body style="color: #004daa ">
