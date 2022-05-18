@@ -191,8 +191,8 @@ function ghostMove(ghost){
 function checkend(ghost){
   if((pacman.x == ghost[1].x) && (pacman.y == ghost[1].y) && lives == 1){
       clearIntervals();
-      alert("Loser!");
-      configuratons(); 
+      var modal = document.getElementById("myModal4");
+      modal.style.display = "block"; 
   }
 
   else if ((pacman.x == ghost[1].x) && (pacman.y == ghost[1].y) && lives > 0) {
@@ -410,6 +410,7 @@ function checkUser() {
     document.getElementById('tab2').type = 'radio';
     Close("myModal3");
     Close("myModal4");
+    Close("myModal5");
     configuratons();
   }
 }
